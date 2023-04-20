@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teacher Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="./images/favicon.png">
+<link href="./vendor/pg-calendar/css/pignose.calendar.min.css"
+	rel="stylesheet">
+<link href="./vendor/chartist/css/chartist.min.css" rel="stylesheet">
+<link href="./css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div id="preloader">
+		<div class="sk-three-bounce">
+			<div class="sk-child sk-bounce1"></div>
+			<div class="sk-child sk-bounce2"></div>
+			<div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div class="nav-header">
+			<a href="index.html" class="brand-logo"> Teacher Dashboard </a>
+
+			<div class="nav-control">
+				<div class="hamburger">
+					<span class="line"></span><span class="line"></span><span
+						class="line"></span>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div class="header">
+			<div class="header-content">
+				<nav class="navbar navbar-expand">
+					<div class="collapse navbar-collapse justify-content-between">
+						<div class="header-left">
+							<!-- <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>
+                                </div>
+                            </div> -->
+						</div>
+						
+						 <th:block th:if="${session.email}">
+                                    	<h4 class="text-center fs-3" style="color: seagreen">[[${session.email}]]</h4>
+                                    	<!--  <th:block th:text="${#session.removeAttribute('Msg')}"></th:block> -->
+                                    </th:block> 
+
+						<ul class="navbar-nav header-right">
+							<li class="nav-item dropdown notification_dropdown"><a
+								class="nav-link" href="#" role="button" data-toggle="dropdown">
+									<i class="mdi mdi-bell"></i>
+									<div class="pulse-css"></div>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<ul class="list-unstyled">
+										<li class="media dropdown-item"><span class="success"><i
+												class="ti-user"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Martin</strong> has added a <strong>customer</strong>
+														Successfully
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="primary"><i
+												class="ti-shopping-cart"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Jennifer</strong> purchased Light Dashboard 2.0.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="danger"><i
+												class="ti-bookmark"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Robin</strong> marked a <strong>ticket</strong> as
+														unsolved.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="primary"><i
+												class="ti-heart"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>David</strong> purchased Light Dashboard 1.0.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="success"><i
+												class="ti-image"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong> James.</strong> has added a<strong>customer</strong>
+														Successfully
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+									</ul>
+									<a class="all-notification" href="#">See all notifications
+										<i class="ti-arrow-right"></i>
+									</a>
+								</div></li>
+							<li class="nav-item dropdown header-profile"><a
+								class="nav-link" href="#" role="button" data-toggle="dropdown">
+									<i class="mdi mdi-account"></i>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a href="./app-profile.html" class="dropdown-item"> <i
+										class="icon-user"></i> <span class="ml-2">Profile </span>
+									</a> <a href="./email-inbox.html" class="dropdown-item"> <i
+										class="icon-envelope-open"></i> <span class="ml-2">Inbox
+									</span>
+									</a> <a href="./page-login.html" class="dropdown-item"> <i
+										class="icon-key"></i> <span class="ml-2">Logout </span>
+									</a>
+								</div></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div class="quixnav">
+			<div class="quixnav-scroll">
+				<ul class="metismenu" id="menu">
+					<!-- <li class="nav-label first">Main Menu</li>
+                     <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+                    </li> 
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="./index.html">Dashboard 1</a></li>
+                            <li><a href="./index2.html">Dashboard 2</a></li>
+                        </ul>
+                    </li>-->
+
+					<li class="nav-label">Main Menu</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">Course</span></a>
+                        <ul aria-expanded="false">
+                            <li><a th:href="@{/addCourse}">Create New Course</a></li>
+                            <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./email-compose.html">Compose</a></li>
+                                    <li><a href="./email-inbox.html">Inbox</a></li>
+                                    <li><a href="./email-read.html">Read</a></li>
+                                </ul>
+                            </li> -->
+                            <li><a th:href="@{allCoursesTeacher}">All Course</a></li>
+                            <li><a th:href="@{/publishCourse}">Publish Course</a></li>
+                            <li><a href="./app-calender.html">Complains</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-app-store"></i><span class="nav-text">MCQs</span></a>
+                        <ul aria-expanded="false">
+                            <li><a th:href="@{/test1/{email}(email=${session.sessionTeacher})}">Create MCQs</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-chart-bar-33"></i><span class="nav-text">Live Session</span></a>
+                        <ul aria-expanded="false">
+                            <li><a th:href="@{/liveSession}">Create Live Session</a></li>
+                            <li><a th:href="@{/all_live_sessions}">All Sessions</a></li>
+                            <!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
+                            <li><a href="./chart-chartist.html">Chartist</a></li>
+                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
+                            <li><a href="./chart-peity.html">Peity</a></li> -->
+                        </ul>
+                    </li>
+
+
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+							class="nav-text">Student</span></a>
+						<ul aria-expanded="false">
+							<li><a href="./chart-flot.html">All Student</a></li>
+							<li><a href="./chart-morris.html">Chats</a></li>
+							<!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
+                            <li><a href="./chart-chartist.html">Chartist</a></li>
+                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
+                            <li><a href="./chart-peity.html">Peity</a></li> -->
+						</ul></li>
+					<li class="nav-label">Components</li>
+					<li><a href="javascript:void()" aria-expanded="false"><i
+							class="icon icon-world-2"></i><span class="nav-text">Profile</span></a>
+
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+			<div class="container-fluid">
+				<div class="row page-titles mx-0">
+					<div class="col-sm-6 p-md-0">
+						<div class="welcome-text">
+							<h4>MCQ Test</h4>
+							<span class="ml-1">Create new MCQ Test</span>
+						</div>
+					</div>
+
+					<div
+						class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="javascript:void(0)">Course</a></li>
+							<li class="breadcrumb-item active"><a
+								href="javascript:void(0)">MCQ</a></li>
+						</ol>
+					</div>
+				</div>
+				<a th:href="@{/test1/{email}(email=${session.sessionTeacher})}" class="btn btn-primary btn-lg">Create Test</a>
+
+				<div class="w-25 p-3"></div>
+				<!-- row -->
+				<div class="row">
+					<div class="col-xl-12 col-xxl-12">
+							<div class="alert alert-success w-50 p-3">
+								<strong>Success!</strong> MCQ Test Created successful...
+							</div>
+					</div>
+				</div>
+			</div>
+			<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+			<!--**********************************
+            Footer start
+        ***********************************-->
+			<div class="footer">
+				<div class="copyright">
+					<!-- <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>-->
+				</div>
+			</div>
+			<!--**********************************
+            Footer end
+        ***********************************-->
+
+			<!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+			<!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+		</div>
+		<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+		<!--**********************************
+        Scripts
+    ***********************************-->
+		<!-- Required vendors -->
+		<script th:src="@{/vendor/global/global.min.js}"></script>
+		<script th:src="@{/js/quixnav-init.js}"></script>
+		<script th:src="@{/js/custom.min.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #6610f2;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            min-height: 100vh;
+        }
+
+ .box{
+   background-color: white;
+   padding-top: 30px;
+   padding: 30px;
+ 
+ }
+ .box h2{
+   margin-bottom: 40px;
+   text-align: center;
+   font-size: 26px;
+   color: #015a96;
+   font-family: sans-serif;
+ }
+
+        input {
+          padding: 20px;
+            user-select: none;
+            height: 50px;
+            width: 400px;
+            border-radius: 6px;
+            border: none;
+            border: 2px solid #4400eb;
+            outline: none;
+            font-size: 22px;
+        }
+        input::placeholder{
+          font-size: 23px;
+        } 
+ 
+        #button {
+            font-family: sans-serif;
+            font-size: 15px;
+   
+            margin-top: 40px;
+            border: 2px solid rgb(20, 139, 250);
+            width: 155px;
+            height: 50px;
+            text-align: center;
+            background-color: #0c81ee;
+            display: flex;
+            color: rgb(255, 255, 255);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 7px;
+     
+         
+        }
+ .btn2{
+   margin-left: 85px
+ }
+
+        #button:hover {
+            color: white;
+            background-color: black;
+        }
+        
+        h3{
+        color:green;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 22px;
+         font-family: sans-serif;
+        }
+ 
+    </style>
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Verifier</title>
+</head>
+
+<body>
+    <div class="body">
+    
+    
+   
+    <form th:action="@{/codeverified/{title}/{student}(title=${session.title}, student=${session.student})}">
+
+ <div class="box">
+ 
+ 	<th:block th:if="${session.Errorcode}">
+     <h3 th:text="${session.Errorcode}"></h3>
+     <p th:text="${#session.removeAttribute('Errorcode')}">
+     </th:block> 
+     
+    
+     
+     <h2>Coupon Code</h2>
+     
+     
+     
+        <input type="text" name="code" placeholder="Enter Code" id="password">
+        
+ 	<center>
+        <table>
+          <th><div>
+         <button id="button" class="btn1" type="submit">Submit</button>
+          </div></th>
+        </table>
+        </center>
+    </div>
+    </form>
+  
+    </div>
+</body>
+<!-- <script>
+    var password=document.getElementById("password");
+    function genPassword() {
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var passwordLength = 12;
+        var password = "";
+        for (var i = 0; i <= passwordLength; i++) {
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNumber, randomNumber +1);
+        }
+        document.getElementById("password").value = password;
+
+    }
+    function copyPassword() {
+  var copyText = document.getElementById("password");
+  copyText.select();
+  copyText.setSelectionRange(0, 999);
+  document.execCommand("copy");
+  
+}
+
+</script> -->
+
+</html>

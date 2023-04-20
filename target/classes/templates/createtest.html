@@ -1,0 +1,33 @@
+
+<!DOCTYPE html >
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="#" th:action="@{/createtest}" method="post" th:object="${mcqobj}">
+
+Q : <input type="text" th:field="*{que}" ><br/>  <!-- Ternary  operator -->
+a : <input type="text" th:field="*{op1}"   ><br/>
+b : <input type="text" th:field="*{op2}"  ><br/>
+c : <input type="text" th:field="*{op3}"   ><br/>
+d : <input type="text" th:field="*{op4}"  ><br/>
+e : <input type="text" th:field="*{op5}"  ><br/>
+
+Ans : <input type="text" th:field="*{ans}"   ><br/>
+Mark : <input type="text" th:field="*{mrk}"   ><br/>
+
+<input type="submit" value="AddQue" name="btn">
+
+
+<!-- <a href="buildtest.jsp?qid=<%=k-1%>&btn=pre">pre</a>
+
+<a href="buildtest.jsp?qid=<%=k+1%>">next</a>
+
+<input type="submit" value="update" name="btn">
+
+<a href="buildtest.jsp">Last Que</a> -->
+</form> 
+</body>
+</html>
