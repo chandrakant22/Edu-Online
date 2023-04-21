@@ -41,7 +41,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a th:href="@{/teacher-dashboard}" class="brand-logo">
                 Teacher Dashboard
             </a>
 
@@ -199,14 +199,14 @@
                             </li> -->
                             <li><a th:href="@{allCoursesTeacher}">All Course</a></li>
                             <li><a th:href="@{/publishCourse}">Publish Course</a></li>
-                            <li><a href="./app-calender.html">Complains</a></li>
+                            <li><a href="#">Complains</a></li>
                         </ul>
                     </li>
                     
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">MCQs</span></a>
                         <ul aria-expanded="false">
-                            <!-- <li><a th:href="@{/test1/{email}(email=${session.sessionTeacher})}">Create MCQs</a></li> -->
+                            <li><a th:href="@{/test1/{email}(email=${session.sessionTeacher})}">Add MCQs</a></li> 
                         </ul>
                     </li>
                     
@@ -226,8 +226,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-chart-bar-33"></i><span class="nav-text">Student</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">All Student</a></li>
-                            <li><a href="./chart-morris.html">Chats</a></li>
+                            <li><a th:href="@{/allStudents}">All Student</a></li>
+                            <li><a href="#">Chats</a></li>
                             <!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
                             <li><a href="./chart-chartist.html">Chartist</a></li>
                             <li><a href="./chart-sparkline.html">Sparkline</a></li>

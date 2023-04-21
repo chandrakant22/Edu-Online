@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.model.Chat;
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseTopic;
+import com.example.demo.model.McqCreate;
 import com.example.demo.model.Student;
 import com.example.demo.model.Teacher;
+import com.example.demo.repository.ChatRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.CourseTopicRepository;
+import com.example.demo.repository.McqCreateRepo;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.repository.TeacherRepository;
 import com.example.demo.service.AuthenticateService;
@@ -177,6 +181,8 @@ public class TeacherController {
 	}
 	
 	
+	@Autowired
+	private McqCreateRepo mcqcredb;
 	@RequestMapping("/allPublishedCoursesTeacher")
 	String allPublishedCourses(Model model, HttpSession session){
 		
@@ -187,12 +193,82 @@ public class TeacherController {
 			//Fetching all published courses for students
 			List<Course> list = courseRepo.findByStatus("Published");
 			model.addAttribute("allCoursesList",list);
-			
+			List<McqCreate>  c=mcqcredb.findAll();
+			model.addAttribute("alltest",c);
 			return "allPublishedCoursesTeacher";
 		}
 		else {
 			return "redirect:/login-teacher";
 		}
 		
+	}
+	
+	
+/**************** Chat Functionalities ****************/
+	
+	
+	
+	@Autowired
+	ChatRepository chatRepo;
+	@RequestMapping("/teacherChatPage1")
+	String teacherChatPage1open(Model model, HttpSession session){
+		
+		String teacherEmail = (String) session.getAttribute("sessionTeacher") ;
+		
+		if( teacherEmail != null) {
+			
+			List<String> chats = chatRepo.getDistinctStudentByTeacherName(teacherEmail);
+			model.addAttribute("chats", chats);
+			
+			return "/teacherChatPage1";
+		}
+		else {
+			return "redirect:/login-teacher";
+		}
+		
+	}
+	
+	private String student;
+	
+	@RequestMapping("/teacherChatPage2/{student}")
+	String teacherChatPage2(Model model, HttpSession session,
+			@PathVariable("student") String student){
+		
+		this.student=student;
+		model.addAttribute("student",student);
+		
+		String teacherEmail = (String) session.getAttribute("sessionTeacher") ;
+		
+		if( teacherEmail != null) {
+			
+			List<Chat> allChats = chatRepo.findByStudentNameAndTeacherName(student, teacherEmail);
+			System.out.println(allChats);
+			model.addAttribute("allChats",allChats);
+			
+			Chat chat = new Chat();
+			model.addAttribute("chat",chat);
+			System.out.println("Khali Chat Object Created.");
+			
+			return "/teacherChatPage2";
+		}
+		else {
+			return "redirect:/login-teacher";
+		}
+		
+	}
+	
+	
+	@RequestMapping("/savechatTeacher")
+	String savechat(@ModelAttribute("chat") Chat chat) {
+		
+		/*
+		 System.out.println(chat.getId()); System.out.println(chat.getTeacherName());
+		 System.out.println(chat.getStudentName());
+		 System.out.println(chat.getStudentMessage());
+		 */
+		
+		chatRepo.save(chat);
+		System.out.println("chat saved");
+		return "redirect:/teacherChatPage2/"+student;
 	}
 }

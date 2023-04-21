@@ -43,7 +43,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a th:href="@{/adminDashboard}" class="brand-logo">
                 Admin Dashboard
             </a>
 
@@ -265,7 +265,7 @@
                             <li><a href="./map-jqvmap.html">Jqv Map</a></li>
                         </ul>
                     </li> -->
-                    <li><a href="randomCodeGen.html" aria-expanded="false"><i class="icon icon-globe-2"></i><span
+                    <li><a th:href="@{/rancodeGen}" aria-expanded="false"><i class="icon icon-globe-2"></i><span
                                 class="nav-text">Code Generater</span></a></li>
 <!--                                 
                     <li class="nav-label">Forms</li>

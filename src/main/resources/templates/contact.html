@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -59,7 +59,7 @@
                                 <div class="header-info-right">
                                     <ul>    
                                         <li><a th:href="@{/login-student}"><i class="ti-user"></i>Login</a></li>
-                                        <li><a href="#"><i class="ti-lock"></i>Register</a></li>
+                                        <li><a th:href="@{/reg-student}"><i class="ti-lock"></i>Register</a></li>
                                     </ul>
                                 </div>
                             </div>

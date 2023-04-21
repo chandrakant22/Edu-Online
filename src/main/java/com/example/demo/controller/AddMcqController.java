@@ -48,7 +48,8 @@ public class AddMcqController {
 	
 	@RequestMapping("/test1/{email}/{subject}")
 	String myfun1(@PathVariable("email") String email,
-			@PathVariable("subject") String subject, Model model) {
+			@PathVariable("subject") String subject, Model model) 
+	{
 		McqCreate mcq = new McqCreate();
 		mcq.setEmail(email);
 		mcq.setTitel(subject);
@@ -57,12 +58,33 @@ public class AddMcqController {
 		mcq.show();
 		return "mcqcreate";
 	}
-	//////////////////////////////////////////////////////////////
+	@RequestMapping("/addonemcq/{email}/{subject}/{time}")
+	String dir(@PathVariable("email") String email,
+			@PathVariable("subject") String subject,@PathVariable("time")String time, Model model) 
+	{
+		McqCreate mcq = new McqCreate();
+		mcq.setTime(time);
+		mcq.setEmail(email);
+		mcq.setTitel(subject);
+		mcq.setSubject(subject);
+		model.addAttribute("mcqCobj", mcq);
+		mcq.show();
+		return "mcqcreate";
+	}
+	
+	@RequestMapping("/addtest")
+	String createtest(Model model) 
+	{
+		McqCreate mcq = new McqCreate();
 
+		model.addAttribute("mcqCobj", mcq);
+		return "addtest";
+	}
+	
 	
 	@Autowired
 	McqCreateRepo mcqcredb;
-	
+
 	@RequestMapping("/test2")
 	String myfun2(@ModelAttribute("mcqCobj") McqCreate mc, RedirectAttributes rattrs) {
 		System.out.println("myfun2 Test 2");
@@ -398,43 +420,7 @@ public class AddMcqController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	@Autowired

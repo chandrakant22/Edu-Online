@@ -158,18 +158,33 @@ public class AdminController {
 	@RequestMapping("/rancodeGen")
 	String codeGenerator(Model model)
 	{
-		CodeGenerator codGen = new CodeGenerator();
-		model.addAttribute("codegen", codGen);
-		return "randomCodeGen.html";
+		//CodeGenerator codGen = new CodeGenerator();
+		//model.addAttribute("codegen", codGen);
+		return "randomCodeGen";
 	}
 	
 	@RequestMapping("/codegenerated")
-	String codeGeneratored(@ModelAttribute("codegen") CodeGenerator codGen,HttpSession session)
+	String codeGeneratored(@RequestParam("code") String code,HttpSession session,CodeGenerator codGen,
+							Model model)
 	{
+		codGen.setCode(code);
 		CodegenRepo.save(codGen);
 		System.out.println("code generated succssfully...");
 		
 		session.setAttribute("codeDone", "Code Generated Succssfully...");
+		
+		List<CodeGenerator> list = CodegenRepo.findAll();
+		
+		int size =list.size();
+		int codeIndex = size-1;
+		
+		CodeGenerator cg = list.get(codeIndex);
+		
+		String cod = cg.getCode();
+		
+		System.out.println(cod);
+		
+		session.setAttribute("codegen", cod);
 		
 		return "redirect:/rancodeGen";
 	}

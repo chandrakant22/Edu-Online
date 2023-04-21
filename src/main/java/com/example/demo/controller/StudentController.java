@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,17 +18,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.model.Admin;
+import com.example.demo.model.Chat;
 import com.example.demo.model.CodeGenerator;
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseEnrolled;
 import com.example.demo.model.CourseTopic;
 import com.example.demo.model.LiveSession;
 import com.example.demo.model.Student;
+import com.example.demo.model.Teacher;
+import com.example.demo.repository.ChatRepository;
 import com.example.demo.repository.CodeGenRepository;
 import com.example.demo.repository.CourseEnrollRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.CourseTopicRepository;
 import com.example.demo.repository.StudentRepository;
+import com.example.demo.repository.TeacherRepository;
 import com.example.demo.service.AuthenticateService;
 import com.example.demo.service.LiveSessionImpl;
 
@@ -144,6 +150,33 @@ public class StudentController {
 		}
 		
 		
+	}
+	
+	@RequestMapping("/reg-student")
+	public String registerPage(Model model) {
+		
+		Student student = new Student();
+		model.addAttribute("StudentKey", student);
+		
+		return "stuRegister";
+	}
+	
+	@RequestMapping("/register-student")
+	public String saveData(@ModelAttribute ("StudentKey") Student student ,HttpSession session) {
+		
+		try {
+			studRepo.save(student);
+			return "redirect:/login-student";
+			
+		} catch (DataIntegrityViolationException e) {
+			
+			
+			session.setAttribute("sessionKey", "Email exists.");
+			
+			System.out.println("Email already registered.");
+			return "redirect:/reg-student";
+		}
+
 	}
 	
 	
@@ -336,5 +369,76 @@ public class StudentController {
 		
 		return "redirect:/codeverifier/{title}/{student}";
 	}
+	
+	
+	
+/**************** Chat Functionalities ****************/
+	
+	
+	
+	
+	
+	@Autowired
+	TeacherRepository teacherRepo;
+	@RequestMapping("/StudentChatPage1")
+	String StudentChatPage1(Model model, HttpSession session) {
+		
+		String studentEmail = (String) session.getAttribute("sessionStudent") ;
+		
+		if( studentEmail != null) {
+		
+		List<Teacher> list = teacherRepo.findAll();
+		
+		model.addAttribute("teachers",list);
+		
+		return "StudentChatPage1";
+		}
+		else {
+			return "redirect:/login-student";
+		}
+	}
+	
+	private String teacher;
+	@Autowired
+	ChatRepository chatRepo;
+	@RequestMapping("/StudentChatPage2/{teacher}")
+	String openStudentChatPage2(@PathVariable("teacher") String teacher,
+			HttpSession session ,Model model) {
+		
+		String studentEmail = (String) session.getAttribute("sessionStudent") ;
+		
+		if( studentEmail != null) {
+		this.teacher=teacher;
+		model.addAttribute("teacher",teacher);
+		
+		List<Chat> allChats = chatRepo.findByStudentNameAndTeacherName(studentEmail, teacher);
+		System.out.println(allChats);
+		model.addAttribute("allChats",allChats);
+		
+		Chat chat = new Chat();
+		model.addAttribute("chat",chat);
+		System.out.println("Khali Chat Object Created.");
+		
+		return "StudentChatPage2";
+		}
+		else {
+			return "redirect:/login-student";
+		}
+	}
+	
+	@RequestMapping("/savechat")
+	String savechat(@ModelAttribute("chat") Chat chat) {
+		
+		/*
+		 System.out.println(chat.getId()); System.out.println(chat.getTeacherName());
+		 System.out.println(chat.getStudentName());
+		 System.out.println(chat.getStudentMessage());
+		 */
+		
+		chatRepo.save(chat);
+		System.out.println("chat saved");
+		return "redirect:/StudentChatPage2/"+teacher;
+	}
+	
 	
 }

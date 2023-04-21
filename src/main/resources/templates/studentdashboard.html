@@ -3,67 +3,70 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Student Dashboard </title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
-    <link th:href="@{/vendor/pg-calendar/css/pignose.calendar.min.css}" rel="stylesheet">
-    <link th:href="@{/vendor/chartist/css/chartist.min.css}" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Dashboard</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	th:href="@{/images/favicon.png}">
+<link th:href="@{/vendor/pg-calendar/css/pignose.calendar.min.css}"
+	rel="stylesheet">
+<link th:href="@{/vendor/chartist/css/chartist.min.css}"
+	rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!--*******************
+	<!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
+	<div id="preloader">
+		<div class="sk-three-bounce">
+			<div class="sk-child sk-bounce1"></div>
+			<div class="sk-child sk-bounce2"></div>
+			<div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+	<!--*******************
         Preloader end
     ********************-->
 
 
-    <!--**********************************
+	<!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
+	<div id="main-wrapper">
 
-        <!--**********************************
+		<!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                Student Dashboard
-            </a>
+		<div class="nav-header">
+			<a th:href="@{/studentdashboard}" class="brand-logo"> Student
+				Dashboard </a>
 
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
+			<div class="nav-control">
+				<div class="hamburger">
+					<span class="line"></span><span class="line"></span><span
+						class="line"></span>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
             Nav header end
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <!-- <div class="search_bar dropdown">
+		<div class="header">
+			<div class="header-content">
+				<nav class="navbar navbar-expand">
+					<div class="collapse navbar-collapse justify-content-between">
+						<div class="header-left">
+							<!-- <div class="search_bar dropdown">
                                 <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
                                     <i class="mdi mdi-magnify"></i>
                                 </span>
@@ -73,108 +76,103 @@
                                     </form>
                                 </div>
                             </div> -->
-                        </div>
-<!-- Session test -->
+						</div>
+						<!-- Session test -->
 						<th:block th:if="${session.sessionStudent}">
-                               <h2 th:text="${session.sessionStudent}"></h2>
-                        </th:block>
-                        
-                        <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="danger"><i class="ti-bookmark"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-heart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-image"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-account"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="./app-profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
-                                        <span class="ml-2">Profile </span>
-                                    </a>
-                                    <a href="./email-inbox.html" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
-                                    </a>
-                                    <a th:href="@{/logout-student}" class="dropdown-item">
-                                        <i class="icon-key"></i>
-                                        <span class="ml-2">Logout </span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!--**********************************
+							<h2 th:text="${session.sessionStudent}"></h2>
+						</th:block>
+
+						<ul class="navbar-nav header-right">
+							<li class="nav-item dropdown notification_dropdown"><a
+								class="nav-link" href="#" role="button" data-toggle="dropdown">
+									<i class="mdi mdi-bell"></i>
+									<div class="pulse-css"></div>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<ul class="list-unstyled">
+										<li class="media dropdown-item"><span class="success"><i
+												class="ti-user"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Martin</strong> has added a <strong>customer</strong>
+														Successfully
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="primary"><i
+												class="ti-shopping-cart"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Jennifer</strong> purchased Light Dashboard 2.0.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="danger"><i
+												class="ti-bookmark"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>Robin</strong> marked a <strong>ticket</strong> as
+														unsolved.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="primary"><i
+												class="ti-heart"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong>David</strong> purchased Light Dashboard 1.0.
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+										<li class="media dropdown-item"><span class="success"><i
+												class="ti-image"></i></span>
+											<div class="media-body">
+												<a href="#">
+													<p>
+														<strong> James.</strong> has added a<strong>customer</strong>
+														Successfully
+													</p>
+												</a>
+											</div> <span class="notify-time">3:20 am</span></li>
+									</ul>
+									<a class="all-notification" href="#">See all notifications
+										<i class="ti-arrow-right"></i>
+									</a>
+								</div></li>
+							<li class="nav-item dropdown header-profile"><a
+								class="nav-link" href="#" role="button" data-toggle="dropdown">
+									<i class="mdi mdi-account"></i>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a href="./app-profile.html" class="dropdown-item"> <i
+										class="icon-user"></i> <span class="ml-2">Profile </span>
+									</a> <a href="./email-inbox.html" class="dropdown-item"> <i
+										class="icon-envelope-open"></i> <span class="ml-2">Inbox
+									</span>
+									</a> <a th:href="@{/logout-student}" class="dropdown-item"> <i
+										class="icon-key"></i> <span class="ml-2">Logout </span>
+									</a>
+								</div></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
-                   <!-- <li class="nav-label first">Main Menu</li>
+		<div class="quixnav">
+			<div class="quixnav-scroll">
+				<ul class="metismenu" id="menu">
+					<!-- <li class="nav-label first">Main Menu</li>
                      <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                     </li> 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
@@ -185,47 +183,49 @@
                         </ul>
                     </li>-->
 
-                    <li class="nav-label">Main Menu</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Course</span></a>
-                        <ul aria-expanded="false">
-                            <li><a th:href="@{/enrolledCourses/{student}(student=${session.sessionStudent})}">Enrolled Course</a></li>
-                            <li><a href="#">Completed Course</a></li>
-                            <li><a href="#">Add Complains</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        class="icon icon-chart-bar-33"></i><span class="nav-text">Live Session</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Upcoming Live Session</a></li>
-                            <li><a th:href="@{/all_live_sessions_student}">All Sessions</a></li>
-                        
-                        </ul>
-                    </li>
-                    
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                        	class="icon icon-chart-bar-33"></i><span class="nav-text">Take Tests</span></a>
-                        	<ul aria-expanded="false">
-                            <li><a th:href="@{/tests}">Tests</a></li>
-                            </ul>
-                    </li>
+					<li class="nav-label">Main Menu</li>
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"><i class="icon icon-app-store"></i><span
+							class="nav-text">Course</span></a>
+						<ul aria-expanded="false">
+							<li><a
+								th:href="@{/enrolledCourses/{student}(student=${session.sessionStudent})}">Enrolled
+									Course</a></li>
+							<li><a href="#">Add Complains</a></li>
+						</ul></li>
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+							class="nav-text">Live Session</span></a>
+						<ul aria-expanded="false">
+							<li><a href="./chart-flot.html">Upcoming Live Session</a></li>
+							<li><a th:href="@{/all_live_sessions_student}">All
+									Sessions</a></li>
+
+						</ul></li>
+
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+							class="nav-text">Take Tests</span></a>
+						<ul aria-expanded="false">
+							<li><a th:href="@{/tests}">Tests</a></li>
+						</ul></li>
 
 
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-chart-bar-33"></i><span class="nav-text">Chats</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Start New Chat </a></li>
-                            <li><a href="./chart-morris.html">All Chats</a></li>
-                            <!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
+					<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
+							class="nav-text">Chats</span></a>
+						<ul aria-expanded="false">
+							<li><a th:href="@{/StudentChatPage1}">Start New Chat </a></li>
+							<li><a href="#">All Chats</a></li>
+							<!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
                             <li><a href="./chart-chartist.html">Chartist</a></li>
                             <li><a href="./chart-sparkline.html">Sparkline</a></li>
                             <li><a href="./chart-peity.html">Peity</a></li> -->
-                        </ul>
-                    </li>
-                    <li class="nav-label">Components</li>
-                    <li><a  href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Profile</span></a>
-                        <!-- <ul aria-expanded="false">
+						</ul></li>
+					<li class="nav-label">Components</li>
+					<li><a href="javascript:void()" aria-expanded="false"><i
+							class="icon icon-world-2"></i><span class="nav-text">Profile</span></a>
+						<!-- <ul aria-expanded="false">
                             <li><a href="./ui-accordion.html">Accordion</a></li>
                             <li><a href="./ui-alert.html">Alert</a></li>
                             <li><a href="./ui-badge.html">Badge</a></li>
@@ -244,9 +244,8 @@
                             <li><a href="./ui-pagination.html">Pagination</a></li>
                             <li><a href="./ui-grid.html">Grid</a></li>
 
-                        </ul> -->
-                    </li>
-                <!--
+                        </ul> --></li>
+					<!--
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
                         <ul aria-expanded="false">
@@ -298,36 +297,36 @@
                             <li><a href="./page-lock-screen.html">Lock Screen</a></li>
                         </ul>
                     </li>-->
-                </ul>
-            </div>
-        </div>
-        <!--**********************************
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
             Sidebar end
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="row page-titles mx-0">
-                    <div class="col-sm-6 p-md-0">
-                        <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">To your student dashboard</p>
-                        </div>
-                    </div>
-                    <!-- <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+		<div class="content-body">
+			<div class="container-fluid">
+				<div class="row page-titles mx-0">
+					<div class="col-sm-6 p-md-0">
+						<div class="welcome-text">
+							<h4>Hi, welcome back!</h4>
+							<p class="mb-0">To your student dashboard</p>
+						</div>
+					</div>
+					<!-- <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Layout</a></li>
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Blank</a></li>
                         </ol>
                     </div> -->
-                </div>
+				</div>
 
-                <div class="row">
-                    
-                    <!-- <div class="col-lg-3 col-sm-6">
+				<div class="row">
+
+					<!-- <div class="col-lg-3 col-sm-6">
                         <div class="card">
                             <div class="stat-widget-one card-body">
                                 <div class="stat-icon d-inline-block">
@@ -340,53 +339,53 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-layout-grid2 text-pink border-pink"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Enrolled Courses</div>
-                                    
-                                    <th:block th:object="${student}">
-                                    	<div class="stat-digit" th:text="${student.coursesEnrolledNo}"></div>
-                                    </th:block>
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-money text-success border-success"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Courses Completed</div>
-                                    <div class="stat-digit">0</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-one card-body">
-                                <div class="stat-icon d-inline-block">
-                                    <i class="ti-link text-danger border-danger"></i>
-                                </div>
-                                <div class="stat-content d-inline-block">
-                                    <div class="stat-text">Complains</div>
-                                    <div class="stat-digit">2</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <!-- <div class="row">
+					<div class="col-lg-3 col-sm-6">
+						<div class="card">
+							<div class="stat-widget-one card-body">
+								<div class="stat-icon d-inline-block">
+									<i class="ti-layout-grid2 text-pink border-pink"></i>
+								</div>
+								<div class="stat-content d-inline-block">
+									<div class="stat-text">Enrolled Courses</div>
+
+									<th:block th:object="${student}">
+										<div class="stat-digit" th:text="${student.coursesEnrolledNo}"></div>
+									</th:block>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6">
+						<div class="card">
+							<div class="stat-widget-one card-body">
+								<div class="stat-icon d-inline-block">
+									<i class="ti-money text-success border-success"></i>
+								</div>
+								<div class="stat-content d-inline-block">
+									<div class="stat-text">Courses Completed</div>
+									<div class="stat-digit">0</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-sm-6">
+						<div class="card">
+							<div class="stat-widget-one card-body">
+								<div class="stat-icon d-inline-block">
+									<i class="ti-link text-danger border-danger"></i>
+								</div>
+								<div class="stat-content d-inline-block">
+									<div class="stat-text">Complains</div>
+									<div class="stat-digit">2</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- <div class="row">
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
@@ -405,63 +404,53 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="row">
-                    <div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">All Courses</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table student-data-table m-t-20">
-                                        <thead>
-                                            <tr>
-                                                <th>Course Title</th>
-                                                <th>Amount</th>
-                                                <th>Email</th>
-                                                <th>Date</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        
-                                            <tr th:each="c : ${allCoursesList}">
-                                                <td th:text="${c.courseTitle}">
-                                                    Course Tilte
-                                                </td>
-                                                
-                                                <td th:text="${c.amount}">
-                                                    Course Amount
-                                                </td>
-                                                
-                                                <td th:text="${c.authorEmail}">
-                                                    Author Email
-                                                </td>
-                                                <td th:text="${c.date}">
-                                                    Date
-                                                </td>
-                                                
-                                                <td>
-	                                               <a th:href="@{/codeverifier/{title}/{student}
-	                                               (title=${c.courseTitle}, student=${session.sessionStudent})}" 
-	                                               class="btn btn-secondary">Enroll</a>
-							                      
-                                                </td>
-                                                
-                                                <!-- <td>
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">All Courses</h4>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table student-data-table m-t-20">
+										<thead>
+											<tr>
+												<th>Course Title</th>
+												<th>Amount</th>
+												<th>Email</th>
+												<th>Date</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<tr th:each="c : ${allCoursesList}">
+												<td th:text="${c.courseTitle}">Course Tilte</td>
+
+												<td th:text="${c.amount}">Course Amount</td>
+
+												<td th:text="${c.authorEmail}">Author Email</td>
+												<td th:text="${c.date}">Date</td>
+
+												<td><a
+													th:href="@{/codeverifier/{title}/{student}
+	                                               (title=${c.courseTitle}, student=${session.sessionStudent})}"
+													class="btn btn-secondary">Enroll</a></td>
+
+												<!-- <td>
                                                     <span class="badge badge-primary">Complete</span>
                                                 </td> -->
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                  <!--  <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--  <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">New Enroll</h4>
@@ -639,7 +628,7 @@
                         </div>
                     </div>
 -->
-                    <!-- <div class="col-xl-12 col-xxl-6 col-lg-6 col-md-12">
+					<!-- <div class="col-xl-12 col-xxl-6 col-lg-6 col-md-12">
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
                                 <div class="card">
@@ -727,189 +716,152 @@
                             </div>
                         </div>
                     </div> -->
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="year-calendar"></div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">All Live Sessions</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table student-data-table m-t-20">
-                                        <thead>
-                                            <tr>
-                                                <th>Subject</th>
-                                                <th>Grade Point</th>
-                                                <th>Percent Form</th>
-                                                <th>Percent Upto</th>
-                                                <th>Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>Mathmatics</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>Mathmatics</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>English</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>Bangla</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>Mathmatics</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>English</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Class Test</td>
-                                                <td>Mathmatics</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="card">
+							<div class="card-body">
+								<div class="year-calendar"></div>
+							</div>
+						</div>
+						<!-- /# card -->
+					</div>
+					<div class="col-lg-8">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">All Live Sessions</h4>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table student-data-table m-t-20">
+										<thead>
+											<tr>
+												<th>Subject</th>
+												<th>Grade Point</th>
+												<th>Percent Form</th>
+												<th>Percent Upto</th>
+												<th>Date</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Class Test</td>
+												<td>Mathmatics</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>Mathmatics</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>English</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>Bangla</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>Mathmatics</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>English</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+											<tr>
+												<td>Class Test</td>
+												<td>Mathmatics</td>
+												<td>4.00</td>
+												<td>95.00</td>
+												<td>100</td>
+												<td>20/04/2017</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
             Content body end
         ***********************************-->
 
 
-        <!--**********************************
+		<!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a> 2019</p>
-                <p>Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a></p>
-            </div>
-        </div>
-        <!--**********************************
+		<div class="footer">
+			<div class="copyright">
+				<p>
+					Copyright © Designed &amp; Developed by <a href="#" target="_blank">Quixkit</a>
+					2019
+				</p>
+				<p>
+					Distributed by <a href="https://themewagon.com/" target="_blank">Themewagon</a>
+				</p>
+			</div>
+		</div>
+		<!--**********************************
             Footer end
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
            Support ticket button start
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
            Support ticket button end
         ***********************************-->
 
 
-    </div>
-    <!--**********************************
+	</div>
+	<!--**********************************
         Main wrapper end
     ***********************************-->
 
-    <!--**********************************
+	<!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script th:src="@{/vendor/global/global.min.js}"></script>
-    <script th:src="@{/js/quixnav-init.js}"></script>
-    <script th:src="@{/js/custom.min.js}"></script>
+	<!-- Required vendors -->
+	<script th:src="@{/vendor/global/global.min.js}"></script>
+	<script th:src="@{/js/quixnav-init.js}"></script>
+	<script th:src="@{/js/custom.min.js}"></script>
 
-    <script th:src="@{/vendor/chartist/js/chartist.min.js}"></script>
+	<script th:src="@{/vendor/chartist/js/chartist.min.js}"></script>
 
-    <script th:src="@{/vendor/moment/moment.min.js}"></script>
-    <script th:src="@{/vendor/pg-calendar/js/pignose.calendar.min.js}"></script>
+	<script th:src="@{/vendor/moment/moment.min.js}"></script>
+	<script th:src="@{/vendor/pg-calendar/js/pignose.calendar.min.js}"></script>
 
 
-    <script th:src="@{/js/dashboard/dashboard-2.js}"></script>
-    <!-- Circle progress -->
+	<script th:src="@{/js/dashboard/dashboard-2.js}"></script>
+	<!-- Circle progress -->
 
 </body>
 

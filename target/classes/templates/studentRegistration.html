@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Admin Dashboard </title>
+    <title>Student Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
@@ -151,7 +151,7 @@
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="./page-login.html" class="dropdown-item">
+                                    <a th:href="@{/logout-student}" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -185,10 +185,10 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-app-store"></i><span class="nav-text">Teacher</span></a>
                      <ul aria-expanded="false">
-                     <li><a href="./app-profile.html">Add Teacher</a></li>
-                     <li><a href="./app-profile.html">Update Teacher</a></li>
-                     <li><a href="./app-profile.html">Delete Teacher</a></li>
-                     <li><a href="./app-profile.html">All Teacher</a></li>
+                    <li><a th:href="@{/editPage}">Update Teacher</a></li>
+                            <li><a th:href="@{/deletePage}">Delete Teacher</a></li>
+                            <li><a th:href="@{/all}">All Teacher</a></li>
+							<li><a th:href="@{/addteacher}">Add Teacher</a></li>
                      <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
                      <ul aria-expanded="false">
                      <li><a href="./email-compose.html">Compose</a></li>
@@ -265,7 +265,7 @@
                             <li><a href="./map-jqvmap.html">Jqv Map</a></li>
                         </ul>
                     </li> -->
-                    <li><a href="randomCodeGen.html" aria-expanded="false"><i class="icon icon-globe-2"></i><span
+                    <li><a th:href="@{/rancodeGen}" aria-expanded="false"><i class="icon icon-globe-2"></i><span
                                 class="nav-text">Code Generater</span></a></li>
 <!--                                 
                     <li class="nav-label">Forms</li>

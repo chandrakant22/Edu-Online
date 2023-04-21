@@ -41,7 +41,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a th:href="@{/studentdashboard}" class="brand-logo">
                 Student Dashboard
             </a>
 
@@ -197,7 +197,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="icon icon-chart-bar-33"></i><span class="nav-text">Live Session</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Upcoming Live Session</a></li>
+                            <li><a href="#">Upcoming Live Session</a></li>
                             <li><a th:href="@{/all_live_sessions_student}" >All Sessions</a></li>
                         
                         </ul>
@@ -214,8 +214,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-chart-bar-33"></i><span class="nav-text">Chats</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Start New Chat </a></li>
-                            <li><a href="./chart-morris.html">All Chats</a></li>
+                            <li><a href="#">Start New Chat </a></li>
+                            <li><a href="#">All Chats</a></li>
                             <!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
                             <li><a href="./chart-chartist.html">Chartist</a></li>
                             <li><a href="./chart-sparkline.html">Sparkline</a></li>

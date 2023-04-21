@@ -43,7 +43,7 @@
             Nav header start
         ***********************************-->
 		<div class="nav-header">
-			<a href="index.html" class="brand-logo"> Teacher Dashboard </a>
+			<a th:href="@{/teacher-dashboard}" class="brand-logo"> Teacher Dashboard </a>
 
 			<div class="nav-control">
 				<div class="hamburger">
@@ -152,7 +152,7 @@
 									</a> <a href="./email-inbox.html" class="dropdown-item"> <i
 										class="icon-envelope-open"></i> <span class="ml-2">Inbox
 									</span>
-									</a> <a href="./page-login.html" class="dropdown-item"> <i
+									</a> <a th:href="@{/logout-teacher}" class="dropdown-item"> <i
 										class="icon-key"></i> <span class="ml-2">Logout </span>
 									</a>
 								</div></li>
@@ -194,7 +194,7 @@
                                     <li><a href="./email-read.html">Read</a></li>
                                 </ul>
                             </li> -->
-                            <li><a th:href="@{allCoursesTeacher}">All Course</a></li>
+                            <li><a th:href="@{/allCoursesTeacher}">All Course</a></li>
                             <li><a th:href="@{/publishCourse}">Publish Course</a></li>
                             <li><a href="./app-calender.html">Complains</a></li>
                         </ul>
@@ -224,7 +224,7 @@
 						aria-expanded="false"><i class="icon icon-chart-bar-33"></i><span
 							class="nav-text">Student</span></a>
 						<ul aria-expanded="false">
-							<li><a href="./chart-flot.html">All Student</a></li>
+							<li><a th:href="@{/allStudents}">All Student</a></li>
 							<li><a href="./chart-morris.html">Chats</a></li>
 							<!-- <li><a href="./chart-chartjs.html">Chartjs</a></li>
                             <li><a href="./chart-chartist.html">Chartist</a></li>
@@ -267,7 +267,7 @@
 						</ol>
 					</div>
 				</div>
-				<a th:href="@{/test1/{email}(email=${session.sessionTeacher})}" class="btn btn-primary btn-lg">Create Test</a>
+				<a  th:href="@{/allPublishedCoursesTeacher}" class="btn btn-primary btn-lg">Create Test</a>
 
 				<div class="w-25 p-3"></div>
 				<!-- row -->
